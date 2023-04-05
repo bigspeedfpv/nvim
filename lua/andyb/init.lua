@@ -1,12 +1,9 @@
-require("theprimeagen.set")
-require("theprimeagen.remap")
-
--- DO NOT INCLUDE THIS
-vim.opt.rtp:append("~/personal/streamer-tools")
--- DO NOT INCLUDE THIS
+require("andyb.set")
+require("andyb.remap")
+require("andyb.plugins")
 
 local augroup = vim.api.nvim_create_augroup
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
+local AndyBGroup = augroup('AndyB', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -27,7 +24,7 @@ autocmd('TextYankPost', {
 })
 
 autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
+    group = AndyBGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })

@@ -70,5 +70,15 @@ return require('packer').startup(function(use)
   use("eandrju/cellular-automaton.nvim")
   use("laytan/cloak.nvim")
 
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+
+  use("timakro/vim-yadi")
+
+  use("christoomey/vim-tmux-navigator")
+
+  use("wakatime/vim-wakatime")
 end)
 
