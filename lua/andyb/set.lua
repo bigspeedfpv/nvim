@@ -12,11 +12,6 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
@@ -30,3 +25,10 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+-- this should make it work on both unix-based and windows (thanks m$)
+local home = os.getenv("HOME") or os.getenv("USERPROFILE")
+vim.opt.undodir = home .. "/.vim/undodir"
+vim.opt.undofile = true
