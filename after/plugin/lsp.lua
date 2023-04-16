@@ -10,6 +10,7 @@ lsp.ensure_installed({
   'prismals',
   'jsonls',
   'volar',
+  'svelte',
 })
 
 -- Fix Undefined global 'vim'
