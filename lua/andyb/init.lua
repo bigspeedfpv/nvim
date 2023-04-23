@@ -2,6 +2,10 @@ require("andyb.set")
 require("andyb.remap")
 require("andyb.plugins")
 
+if (vim.fn.has("termguicolors")) then
+ vim.g.termguicolors = true
+end
+
 local augroup = vim.api.nvim_create_augroup
 local AndyBGroup = augroup('AndyB', {})
 

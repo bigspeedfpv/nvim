@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
 
+  use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
+
   use 'andweeb/presence.nvim'
 
   use {
@@ -58,7 +60,9 @@ return require('packer').startup(function(use)
   use("theprimeagen/refactoring.nvim")
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
-  use("nvim-treesitter/nvim-treesitter-context");
+  use("nvim-treesitter/nvim-treesitter-context")
+
+  use 'esensar/nvim-dev-container'
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
