@@ -39,6 +39,10 @@ local config = {
     -- Disable sections and component separators
     component_separators = '',
     section_separators = '',
+    theme = 'tokyonight',
+    globalstatus = true,
+
+    --[[
     theme = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
@@ -46,6 +50,7 @@ local config = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
+    ]]
   },
   sections = {
     -- these are to remove the defaults
@@ -177,6 +182,8 @@ ins_left {
 }
 
 -- Add components to right sections
+ins_right { "require('lsp-status).status()" }
+
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
