@@ -46,6 +46,7 @@ return require('packer').startup(function(use)
     use({
         'folke/tokyonight.nvim',
         config = function()
+            require("tokyonight").setup({ style = "night", transparent = true })
             vim.cmd('colorscheme tokyonight')
         end
     })
@@ -124,6 +125,27 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+
+    -- use {
+    --     "m4xshen/hardtime.nvim",
+    --     config = function()
+    --         require("hardtime").setup({
+    --             restricted_keys = {
+    --                 ["h"] = { "n", "v" },
+    --                 ["j"] = { "n", "v" },
+    --                 ["k"] = { "n", "v" },
+    --                 ["l"] = { "n", "v" },
+    --                 ["-"] = { "n", "v" },
+    --                 ["+"] = { "n", "v" },
+    --                 ["gj"] = { "n", "v" },
+    --                 ["gk"] = { "n", "v" },
+    --                 ["<CR>"] = { "n", "v" },
+    --                 ["<C-M>"] = { "n", "v" },
+    --                 ["<C-N>"] = { "n", "v" },
+    --             }
+    --         })
+    --     end
+    -- }
 
     if packer_bootstrap then
         require('packer').sync()

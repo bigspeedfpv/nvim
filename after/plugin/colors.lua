@@ -1,6 +1,3 @@
-require('tokyonight').setup({
-    disable_background = true
-})
 
 --[[
 function ColorMyPencils(color)
