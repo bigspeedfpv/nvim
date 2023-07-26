@@ -1,36 +1,40 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+-- This file can be loaded by calling `lua require("plugins")` from your init.vim
 
--- Only required if you have packer configured as `opt`
-vim.cmd.packadd('packer.nvim')
-
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+require("lazy").setup({
+    "andweeb/presence.nvim",
+    "christoomey/vim-tmux-navigator",
+    "folke/todo-comments.nvim",
+    "folke/trouble.nvim",
+    "folke/zen-mode.nvim",
+    "github/copilot.vim",
+    "laytan/cloak.nvim",
+    "lvimuser/lsp-inlayhints.nvim",
+    "nvim-treesitter/playground",
+    "mbbill/undotree",
+    "numToStr/Comment.nvim",
+    "nvim-lua/lsp-status.nvim",
+    "nvim-treesitter/nvim-treesitter-context",
+    "theprimeagen/harpoon",
+    "theprimeagen/refactoring.nvim",
+    "timakro/vim-yadi",
+    "tpope/vim-fugitive",
+    "wakatime/vim-wakatime",
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
-    use 'nvim-tree/nvim-web-devicons'
-
-    use 'andweeb/presence.nvim'
-
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
-
-    use({
-        'catppuccin/nvim',
+    {
+        "catppuccin/nvim",
         config = function()
             require("catppuccin").setup {
                 transparent_background = true,
@@ -39,112 +43,51 @@ return require('packer').startup(function(use)
                     mason = true,
                 },
             }
-            vim.cmd('colorscheme catppuccin')
-        end
-    })
-
-    use({
-        "folke/trouble.nvim",
-        config = function()
-            require("trouble").setup {
-                icons = false,
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
-    })
-
-
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use("nvim-treesitter/playground")
-    use("theprimeagen/harpoon")
-    use("theprimeagen/refactoring.nvim")
-    use("mbbill/undotree")
-    use("tpope/vim-fugitive")
-    use("nvim-treesitter/nvim-treesitter-context")
-
-    use 'esensar/nvim-dev-container'
-
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
-        }
-    }
-
-    use("folke/zen-mode.nvim")
-    use("github/copilot.vim")
-    use("eandrju/cellular-automaton.nvim")
-    use("laytan/cloak.nvim")
-
-    -- use { 'nvim-lualine/lualine.nvim' }
-
-    use("timakro/vim-yadi")
-
-    use("christoomey/vim-tmux-navigator")
-
-    use("wakatime/vim-wakatime")
-
-    use {
-        "lvimuser/lsp-inlayhints.nvim",
-        branch = "anticonceal",
-    }
-
-    use "nvim-lua/lsp-status.nvim"
-
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
-
-    use({
-        "utilyre/barbecue.nvim",
-        tag = "*",
-        requires = {
-            "SmiteshP/nvim-navic",
-        },
-        config = function()
-            require("barbecue").setup()
+            vim.cmd("colorscheme catppuccin")
         end,
-    })
-
-    use {
-        'freddiehaddad/feline.nvim',
+    },
+    {
+        "freddiehaddad/feline.nvim",
         config = function()
-            local ctp_feline = require('catppuccin.groups.integrations.feline')
+            local ctp_feline = require("catppuccin.groups.integrations.feline")
             require("feline").setup({
                 components = ctp_feline.get(),
             })
         end,
-    }
+    },
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+    },
+    {
+        "utilyre/barbecue.nvim",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+        },
+    },
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        dependencies = {
+            -- LSP Support
+            "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
 
-    use {
-        "folke/todo-comments.nvim",
-        config = function()
-            require("todo-comments").setup()
-        end
-    }
+            -- Autocompletion
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
 
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end)
+            -- Snippets
+            "L3MON4D3/LuaSnip",
+            "rafamadriz/friendly-snippets",
+        },
+    },
+})
