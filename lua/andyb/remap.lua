@@ -43,9 +43,6 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- exit terminal
 vim.keymap.set("n", "<leader>,", "<cmd>vertical resize -5<CR>")
 vim.keymap.set("n", "<leader>.", "<cmd>vertical resize +5<CR>")
 
-vim.keymap.set("n", "<leader>T", "<cmd>NvimTreeToggle<CR>")
-vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeFocus<CR>")
-
 vim.keymap.set("n", "<A-,>", "<cmd>BufferPrevious<CR>")
 vim.keymap.set("n", "<A-.>", "<cmd>BufferNext<CR>")
 vim.keymap.set("n", "<A-<>", "<cmd>BufferMovePrevious<CR>")

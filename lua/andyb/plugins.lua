@@ -20,34 +20,26 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use 'nvim-tree/nvim-tree.lua'
     use 'nvim-tree/nvim-web-devicons'
-
-    use { 'romgrk/barbar.nvim',
-        requires = 'nvim-web-devicons',
-        config = function()
-            require("barbar").setup {
-                sidebar_filetypes = {
-                    NvimTree = { text = "NvimTree" },
-                    undotree = { text = "UndoTree" },
-                }
-            }
-        end
-    }
 
     use 'andweeb/presence.nvim'
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     use({
-        'folke/tokyonight.nvim',
+        'catppuccin/nvim',
         config = function()
-            require("tokyonight").setup({ style = "night", transparent = true })
-            vim.cmd('colorscheme tokyonight')
+            require("catppuccin").setup {
+                transparent_background = true,
+                integrations = {
+                    harpoon = true,
+                    mason = true,
+                },
+            }
+            vim.cmd('colorscheme catppuccin')
         end
     })
 
@@ -102,9 +94,7 @@ return require('packer').startup(function(use)
     use("eandrju/cellular-automaton.nvim")
     use("laytan/cloak.nvim")
 
-    use {
-        'nvim-lualine/lualine.nvim',
-    }
+    -- use { 'nvim-lualine/lualine.nvim' }
 
     use("timakro/vim-yadi")
 
@@ -126,26 +116,33 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- use {
-    --     "m4xshen/hardtime.nvim",
-    --     config = function()
-    --         require("hardtime").setup({
-    --             restricted_keys = {
-    --                 ["h"] = { "n", "v" },
-    --                 ["j"] = { "n", "v" },
-    --                 ["k"] = { "n", "v" },
-    --                 ["l"] = { "n", "v" },
-    --                 ["-"] = { "n", "v" },
-    --                 ["+"] = { "n", "v" },
-    --                 ["gj"] = { "n", "v" },
-    --                 ["gk"] = { "n", "v" },
-    --                 ["<CR>"] = { "n", "v" },
-    --                 ["<C-M>"] = { "n", "v" },
-    --                 ["<C-N>"] = { "n", "v" },
-    --             }
-    --         })
-    --     end
-    -- }
+    use({
+        "utilyre/barbecue.nvim",
+        tag = "*",
+        requires = {
+            "SmiteshP/nvim-navic",
+        },
+        config = function()
+            require("barbecue").setup()
+        end,
+    })
+
+    use {
+        'freddiehaddad/feline.nvim',
+        config = function()
+            local ctp_feline = require('catppuccin.groups.integrations.feline')
+            require("feline").setup({
+                components = ctp_feline.get(),
+            })
+        end,
+    }
+
+    use {
+        "folke/todo-comments.nvim",
+        config = function()
+            require("todo-comments").setup()
+        end
+    }
 
     if packer_bootstrap then
         require('packer').sync()
