@@ -21,7 +21,6 @@ require("lazy").setup({
     "folke/zen-mode.nvim",
     "github/copilot.vim",
     "laytan/cloak.nvim",
-    "lvimuser/lsp-inlayhints.nvim",
     "nvim-treesitter/playground",
     "mbbill/undotree",
     "numToStr/Comment.nvim",
@@ -54,6 +53,10 @@ require("lazy").setup({
                 components = ctp_feline.get(),
             })
         end,
+    },
+    {
+        "lvimuser/lsp-inlayhints.nvim",
+        branch = "anticonceal",
     },
     {
         "nvim-telescope/telescope.nvim",
