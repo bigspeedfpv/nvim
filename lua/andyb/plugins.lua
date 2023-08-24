@@ -16,15 +16,14 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     "andweeb/presence.nvim",
     "christoomey/vim-tmux-navigator",
-    "folke/todo-comments.nvim",
     "folke/trouble.nvim",
     "folke/zen-mode.nvim",
     "github/copilot.vim",
     "laytan/cloak.nvim",
     "nvim-treesitter/playground",
     "mbbill/undotree",
-    "numToStr/Comment.nvim",
     "nvim-lua/lsp-status.nvim",
+    "nvim-tree/nvim-web-devicons",
     "nvim-treesitter/nvim-treesitter-context",
     "theprimeagen/harpoon",
     "theprimeagen/refactoring.nvim",
@@ -46,6 +45,13 @@ require("lazy").setup({
         end,
     },
     {
+        "folke/todo-comments.nvim",
+        lazy = false,
+        config = function()
+            require("todo-comments").setup {}
+        end,
+    },
+    {
         "freddiehaddad/feline.nvim",
         config = function()
             local ctp_feline = require("catppuccin.groups.integrations.feline")
@@ -61,6 +67,13 @@ require("lazy").setup({
     {
         "nvim-telescope/telescope.nvim",
         dependencies = { "nvim-lua/plenary.nvim" }
+    },
+    {
+        "numToStr/Comment.nvim",
+        lazy = false,
+        config = function()
+            require("Comment").setup {}
+        end
     },
     {
         "nvim-treesitter/nvim-treesitter",
