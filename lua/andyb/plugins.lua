@@ -15,10 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     "andweeb/presence.nvim",
-    "christoomey/vim-tmux-navigator",
+    "folke/neoconf.nvim",
     "folke/trouble.nvim",
-    "folke/zen-mode.nvim",
-    "github/copilot.vim",
+    "folke/twilight.nvim",
     "laytan/cloak.nvim",
     "nvim-treesitter/playground",
     "mbbill/undotree",
@@ -30,6 +29,8 @@ require("lazy").setup({
     "timakro/vim-yadi",
     "tpope/vim-fugitive",
     "wakatime/vim-wakatime",
+
+    "rescript-lang/vim-rescript",
 
     {
         "catppuccin/nvim",
@@ -52,6 +53,22 @@ require("lazy").setup({
         end,
     },
     {
+        "folke/twilight.nvim",
+        opts = {
+            dimming = { alpha = 0.5 },
+        },
+    },
+    {
+        "folke/zen-mode.nvim",
+        opts = {
+            plugins = {
+                kitty = {
+                    enabled = true,
+                },
+            },
+        },
+    },
+    {
         "freddiehaddad/feline.nvim",
         config = function()
             local ctp_feline = require("catppuccin.groups.integrations.feline")
@@ -59,10 +76,6 @@ require("lazy").setup({
                 components = ctp_feline.get(),
             })
         end,
-    },
-    {
-        "lvimuser/lsp-inlayhints.nvim",
-        branch = "anticonceal",
     },
     {
         "nvim-telescope/telescope.nvim",

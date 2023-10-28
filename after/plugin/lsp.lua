@@ -1,3 +1,5 @@
+require("neoconf").setup{}
+
 local lsp = require("lsp-zero")
 local lsp_status = require("lsp-status")
 
@@ -40,6 +42,10 @@ lsp.configure('lua-language-server', {
 --         },
 --     },
 -- }
+
+require("lspconfig").dartls.setup({
+  cmd = { "dart", 'language-server', '--protocol=lsp' },
+})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
