@@ -21,7 +21,6 @@ require("lazy").setup({
     "laytan/cloak.nvim",
     "nvim-treesitter/playground",
     "mbbill/undotree",
-    "nvim-lua/lsp-status.nvim",
     "nvim-tree/nvim-web-devicons",
     "nvim-treesitter/nvim-treesitter-context",
     "theprimeagen/harpoon",
@@ -39,6 +38,7 @@ require("lazy").setup({
                 transparent_background = true,
                 integrations = {
                     harpoon = true,
+                    fidget = true,
                     mason = true,
                 },
             }
@@ -99,24 +99,25 @@ require("lazy").setup({
         },
     },
     {
-        "VonHeikemen/lsp-zero.nvim",
-        dependencies = {
-            -- LSP Support
-            "neovim/nvim-lspconfig",
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-
-            -- Autocompletion
-            "hrsh7th/nvim-cmp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
-
-            -- Snippets
-            "L3MON4D3/LuaSnip",
-            "rafamadriz/friendly-snippets",
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
+        opts = {
+            window = { blend = 0 },
+            text = { spinner = "dots_snake" },
         },
     },
+
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "saadparwaiz1/cmp_luasnip",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lua",
+    "L3MON4D3/LuaSnip",
+    "rafamadriz/friendly-snippets",
 })
