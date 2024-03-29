@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local bufnr = event.buf
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint(bufnr, true)
+            vim.lsp.inlay_hint.enable(bufnr, true)
         end
 
         local opts = { buffer = bufnr, remap = false }
@@ -81,10 +81,24 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     end
 })
 
+lspconfig.hls.setup {
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    settings = {
+        haskell = {
+            plugin = {
+                stan = {
+                    globalOn = false,
+                },
+            },
+        },
+    },
+}
 lspconfig.dartls.setup({
     cmd = { "dart", 'language-server', '--protocol=lsp' },
 })
 lspconfig.sourcekit.setup {
     cmd = { 'sourcekit-lsp' }
 }
-
+lspconfig.ocamlls.setup {
+    cmd = { 'ocamllsp' }
+}
