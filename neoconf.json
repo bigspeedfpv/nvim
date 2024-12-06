@@ -1,5 +1,11 @@
 {
-  "tsserver": {
-    "plugins": {}
+  "lspconfig": {
+    "rust_analyzer": {
+      "rust-analyzer": {
+        "check": {
+          "command": "clippy"
+        }
+      }
+    }
   }
 }
