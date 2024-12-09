@@ -3,6 +3,7 @@ vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
+vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.showmode = false

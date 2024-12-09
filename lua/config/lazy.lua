@@ -344,5 +344,23 @@ require("lazy").setup({
     keys = {
       { "<leader>gg", "<cmd>LazyGit<CR>", desc = "LazyGit" },
     },
-  }
+  },
+
+  {
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>cd",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cD",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+    },
+  },
 })
