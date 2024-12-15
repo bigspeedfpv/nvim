@@ -183,6 +183,10 @@ require("lazy").setup({
         hls = { mason = false },
         ocamllsp = { mason = false },
         metals = { mason = false },
+        sourcekit = { mason = false },
+        bashls = { mason = false },
+        nushell = { mason = false },
+        basedpyright = { mason = false },
       }
 
       for k, v in pairs(servers) do
