@@ -107,8 +107,11 @@ require("lazy").setup({
     dependencies = {
       { "j-hui/fidget.nvim", opts = {} },
       "hrsh7th/cmp-nvim-lsp",
+      "folke/neoconf.nvim",
     },
     config = function()
+      require("neoconf").setup({})
+
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
@@ -294,7 +297,12 @@ require("lazy").setup({
     end
   },
 
-  { "folke/todo-comments.nvim", event = "VimEnter", dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "folke/todo-comments.nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
 
   {
     "echasnovski/mini.nvim",
@@ -315,6 +323,8 @@ require("lazy").setup({
       statusline.section_location = function()
         return "%2l:%-2v"
       end
+
+      require("mini.indentscope").setup()
     end,
   },
 
@@ -367,4 +377,6 @@ require("lazy").setup({
       },
     },
   },
+
+  { "wakatime/vim-wakatime", lazy = false },
 })
