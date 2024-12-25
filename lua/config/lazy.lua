@@ -108,9 +108,28 @@ require("lazy").setup({
       { "j-hui/fidget.nvim", opts = {} },
       "hrsh7th/cmp-nvim-lsp",
       "folke/neoconf.nvim",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
     },
     config = function()
       require("neoconf").setup({})
+
+      require("mason").setup()
+      require("mason-lspconfig").setup()
+
+      require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function (server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup {}
+        end,
+        -- Next, you can provide a dedicated handler for specific servers.
+        -- For example, a handler override for the `rust_analyzer`:
+        ["rust_analyzer"] = function ()
+            require("rust-tools").setup {}
+        end
+      }
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -176,20 +195,8 @@ require("lazy").setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+      -- externally installed servers (i.e. not through mason)
       local servers = {
-        lua_ls = { mason = false },
-        clangd = { mason = false },
-        rust_analyzer = { mason = false },
-        gopls = { mason = false },
-        zls = { mason = false },
-        nil_ls = { mason = false },
-        hls = { mason = false },
-        ocamllsp = { mason = false },
-        metals = { mason = false },
-        sourcekit = { mason = false },
-        bashls = { mason = false },
-        nushell = { mason = false },
-        basedpyright = { mason = false },
       }
 
       for k, v in pairs(servers) do
