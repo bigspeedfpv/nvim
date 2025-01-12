@@ -18,12 +18,11 @@ require("lazy").setup({
   "tpope/vim-sleuth",
 
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+    "rose-pine/neovim",
+    name = "rose-pine",
     init = function()
-      vim.cmd.colorscheme("catppuccin")
-    end
+      vim.cmd.colorscheme("rose-pine")
+    end,
   },
 
   {
@@ -124,11 +123,6 @@ require("lazy").setup({
         function (server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup {}
         end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
-        ["rust_analyzer"] = function ()
-            require("rust-tools").setup {}
-        end
       }
 
       vim.api.nvim_create_autocmd("LspAttach", {
