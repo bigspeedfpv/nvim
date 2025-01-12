@@ -189,8 +189,10 @@ require("lazy").setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-      -- externally installed servers (i.e. not through mason)
       local servers = {
+        ocamllsp = { mason = false },
+        zls = { mason = false },
+        nushell = {},
       }
 
       for k, v in pairs(servers) do
