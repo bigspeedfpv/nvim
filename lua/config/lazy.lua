@@ -185,7 +185,7 @@ require("lazy").setup({
         for type, icon in pairs(signs) do
           diagnostic_signs[vim.diagnostic.severity[type]] = icon
         end
-        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+        vim.diagnostic.config { virtual_text = true, signs = { text = diagnostic_signs } }
       end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
