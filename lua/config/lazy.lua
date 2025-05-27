@@ -122,8 +122,8 @@ require("lazy").setup({
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
-        function (server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {}
+        function(server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup {}
         end,
       }
 
@@ -195,6 +195,7 @@ require("lazy").setup({
         ocamllsp = { mason = false },
         zls = { mason = false },
         nushell = {},
+        teal_ls = { mason = false },
       }
 
       for k, v in pairs(servers) do
