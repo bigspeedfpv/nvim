@@ -184,14 +184,27 @@ require("lazy").setup({
 
       local servers = {
         ocamllsp = { mason = false },
+        hls = { mason = false },
+        rust_analyzer = { settings = { ["rust-analyzer"] = { check = { command = "clippy" } } }, mason = false },
         zls = { mason = false },
         nushell = {},
         teal_ls = { mason = false },
+        kotlin_lsp = {},
+        jdtls = {
+          settings = {
+            java = {
+              format = {
+                enabled = false,
+              },
+            },
+          },
+        },
       }
 
       for k, v in pairs(servers) do
         v.capabilities = vim.tbl_deep_extend("force", {}, capabilities, v.capabilities or {})
-        require("lspconfig")[k].setup(v)
+        vim.lsp.config(k, v)
+        vim.lsp.enable(k)
       end
     end,
   },
